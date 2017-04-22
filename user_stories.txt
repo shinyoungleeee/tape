@@ -1,0 +1,36 @@
+As a user
+I want to see a list of song modules
+So that I can see the songs that have been added so far
+
+Acceptance Criteria
+* Every song module should have a title, album, artist, image, and link to
+stream it (in the form of a button)
+* Song modules should be displayed in rows of 3 on large screens and stacked on
+small and medium screens
+
+
+As a user
+I want to click streaming buttons
+So that I can listen to the song via my favorite streaming service
+
+Acceptance Criteria
+* Clicking the button should redirect to an third-party streaming service (e.g.
+Spotify, SoundCloud, Bandcamp, Apple Music, Tidal) on a new tab
+* Stream Button Links should contain the logo of the streaming service
+
+
+As a user
+I want to upvote or downvote songs
+So that I can increase/decrease the popularity of a song
+
+Acceptance Criteria
+* Song modules should have a like and dislike button
+* If like or dislike is pressed, the opposite button should disappear
+* The button should look significantly different after it's pressed to confirm
+that it was pressed (dynamically using REACT)
+* Users should be able to press the button to unlike/undislike
+* Users should only be able to like OR dislike a song once unless they
+* Song modules should be listed in order of popularity (total likes - total
+dislikes)
+* Popularity should update dynamically (using REACT)
+* Song module order should update dynamically (using REACT)

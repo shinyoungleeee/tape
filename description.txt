@@ -1,0 +1,9 @@
+My app is called "tape." It's a site that enables a user to have easy access to
+all of the streaming services that hold a particular song, album, artist, or
+playlist. Song, album, artist, and playlist modules will be viewable on separate
+index pages. Each index page will show all modules in order of popularity.
+Popularity will change based on user likes/dislikes. Index pages will have
+additional querying (e.g. genre, release date, etc.), which will limit what is
+displayed. Users will also be able to create groups to limit popularity votes to
+only those made by users in that group. This will enable users to be able to see
+what's most popular amongst their friends.

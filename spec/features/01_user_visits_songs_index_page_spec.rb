@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 feature 'user navigates to songs index page' do
-  scenario 'sees a list of song names' do
-    song = create(:song)
+  scenario 'sees a list of song names and links' do
+    song_url = create(:song_url)
 
     visit songs_path
 
-    expect(page).to have_content song.name
+    expect(page).to have_content song_url.song.name
+    expect(page).to have_link song_url.service
   end
   # scenario 'sees a maximum of 3 songs per row' do
   #   4.times { create(:meme) }

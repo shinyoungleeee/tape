@@ -29,6 +29,7 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem "capybara-webkit"
 end
 
 group :production do

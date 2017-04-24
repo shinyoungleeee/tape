@@ -3,7 +3,7 @@ I want to see a list of song modules
 So that I can see the songs that have been added so far
 
 Acceptance Criteria
-* Every song module should have a title, album, artist, image, and link to
+* Every song module should have a title, album, album cover, artist, and link to
 stream it (in the form of a button)
 * Song modules should be displayed in rows of 3 on large screens and stacked on
 small and medium screens

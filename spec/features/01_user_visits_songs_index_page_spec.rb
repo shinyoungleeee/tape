@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user navigates to songs index page' do
+feature 'user navigates to songs index page', :js => true do
   scenario 'sees a list of song names and links' do
     song_url = create(:song_url)
 

@@ -11,7 +11,7 @@ class SongTile extends React.Component {
   render() {
     let links = this.props.links.map(link => {
       return(
-        <a href={link.url}>{link.service}</a>
+        <a href={link.url}><img className="song-url-logos" src={link.service + ".png"} alt={link.service + " logo"} /></a>
       )
     })
     return(
@@ -19,11 +19,12 @@ class SongTile extends React.Component {
         <div className="media-object">
           <div className="media-object-section">
             <div className="thumbnail">
-              <img className="song-album-cover" src="/assets/tape.jpg" />
+              <img className="song-album-cover" src={this.props.album.image_url} />
             </div>
           </div>
           <div className="media-object-section">
             <h4>{this.props.name}</h4>
+            <h6>{this.props.album.name} (Disc {this.props.disc}, Track {this.props.track})</h6>
             {links}
           </div>
         </div>

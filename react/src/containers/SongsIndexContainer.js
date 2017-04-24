@@ -35,6 +35,9 @@ class SongsIndexContainer extends React.Component {
           key={song.id}
           id={song.id}
           name={song.name}
+          album={song.album}
+          track={song.track}
+          disc={song.disc}
           links={song.song_urls}
         />
       )

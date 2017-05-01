@@ -1,0 +1,28 @@
+h1 {
+  color: #ECECEC;
+}
+
+.landing-page {
+  background-color: #1B1B1B;
+}
+
+.landing-page-title {
+  background-image: image-url("tape.jpg");
+  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+  filter: invert(100%);
+  padding-top: 55vmin;
+}
+
+.landing-page-title h1 {
+  padding-left: 3vw;
+  background-image: image-url("moon-3.jpg");
+  background-size: contain;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ECECEC;
+  font-size: 30vmin;
+  filter: invert(100%);
+}

@@ -9,6 +9,12 @@ class SongTile extends React.Component {
   }
 
   render() {
+    // let discAndTrack = ``
+    // if (this.props.disc != 0) {
+    //   discAndTrack = `D${this.props.disc}T${this.props.track}`
+    // } else {
+    //   discAndTrack = `T${this.props.track}`
+    // }
     let links = this.props.links.map(link => {
       return(
         <a href={link.url}><img className="song-url-logos" src={link.service + ".png"} alt={link.service + " logo"} /></a>
@@ -23,9 +29,11 @@ class SongTile extends React.Component {
             </div>
           </div>
           <div className="media-object-section">
-            <h4>{this.props.name}</h4>
-            <h6>{this.props.album.name} (Disc {this.props.disc}, Track {this.props.track})</h6>
             {links}
+          </div>
+          <div className="media-object-section">
+            <h5>{this.props.name}</h5>
+            <p>{this.props.album.name}</p>
           </div>
         </div>
       </div>

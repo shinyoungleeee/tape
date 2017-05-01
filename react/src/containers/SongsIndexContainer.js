@@ -11,7 +11,7 @@ class SongsIndexContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/songs.json')
+    fetch('/api/v1/songs.json')
       .then(response => {
         if (response.ok) {
           return response;

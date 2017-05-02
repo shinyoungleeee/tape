@@ -11,32 +11,14 @@ class LandingPage extends React.Component {
   render() {
     return(
       <div className="landing-page">
-        <div className="landing-page-title" data-equalizer>
-          <div className="float-left middle">
-            <div className="landing-page-nav media-object" data-toggle="landing-page-nav-dropdown">
+        <div className="landing-page-title">
+          <div className="landing-page-nav flex-container align-justify" data-equalizer>
+            <div className="media-object">
               <div className="media-object-section middle" data-equalizer-watch>
-                <p>(+) Navigation</p>
+                <p data-toggle="landing-page-nav-links">(+) Navigation</p>
               </div>
-              <div className="dropdown-pane" id="landing-page-nav-dropdown" data-dropdown>
-                <ul className="menu vertical">
-                  <li><a href="#albums">Albums</a></li>
-                  <li><a href="#songs">Songs</a></li>
-                  <li><a href="#artists">Artists</a></li>
-                  <li><a href="#playlists">Playlists/DJs</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="float-right">
-            <div className="landing-page-user media-object" data-toggle="landing-page-user-dropdown">
-              <div className="media-object-section middle" data-equalizer-watch>
-                <p>username</p>
-              </div>
-              <div className="media-object-section">
-                <img className="landing-page-avatar" src="./tape-icon.png" alt="" />
-              </div>
-              <div className="dropdown-pane" id="landing-page-user-dropdown" data-dropdown>
-                <ul className="menu vertical">
+              <div className="not-visible" id="landing-page-nav-links" data-toggler="not-visible">
+                <ul className="menu">
                   <li><Link to={'/albums'}>My Albums</Link></li>
                   <li><Link to={'/songs'}>My Songs</Link></li>
                   <li><Link to={'/artists'}>My Artists</Link></li>
@@ -44,8 +26,28 @@ class LandingPage extends React.Component {
                 </ul>
               </div>
             </div>
+            <div>
+              <h1>t a p e</h1>
+            </div>
+            <div className="media-object">
+              <div className="media-object-section middle" data-equalizer-watch>
+                <p>username</p>
+              </div>
+              <div className="media-object-section">
+                <img className="landing-page-avatar" src="./tape-icon.png" alt="" />
+              </div>
+            </div>
           </div>
-          <h1>t a p e</h1>
+          <div className="row">
+            <form className="landing-page-search">
+              <div className="input-group">
+                <input className="input-group-field" type="url" />
+                <div className="input-group-button">
+                  <input type="submit" className="button" value="Submit" />
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div>
           <br/><hr/><br/>

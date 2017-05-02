@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# spotify_uris = [
+#   '21bwCWvmjUvBqk3N8O6CqU',
+#   '4eLPsYPBmXABThSJ821sqY',
+#   '1lXY618HWkwYKJWBRYR4MK',
+#   '0ETFjACtuP2ADo6LFhL6HN',
+#   '1dZZh7PvVgce1DDsDPzy8Z',
+#   '79dL7FLiJFOO0EoehUHQBv',
+#   '19RUXBFyM4PpmrLRdtqWbp',
+#   '36VJqCEgUg3nj0Eyxtc1av'
+# ]
+#
+# year_regex = /\b(19|20)\d{2}\b/
+#
+# spotify_uris.each do |uri|
+#   a = RSpotify::Album.find(uri)
+#   b = Album.create(name: a.name, image_url: a.images[1]["url"], year: a.release_date[year_regex].to_i, kind: a.album_type)
+#   AlbumUrl.create(album: b, service: "Spotify", url: a.external_urls["spotify"])
+# end

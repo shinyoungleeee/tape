@@ -7,6 +7,6 @@ import Root from './Root';
 $(function() {
   ReactDOM.render(
     <Root />,
-    document.getElementById('root')
+    document.getElementById('app')
   );
 });

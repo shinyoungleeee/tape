@@ -44,9 +44,10 @@ class AlbumsIndexContainer extends React.Component {
     })
     return(
       <div className="albums">
-        <div className="row">
-          <h2>My Albums</h2>
+        <div className="row align-center">
+          <h3>My Albums</h3>
         </div>
+        <hr width="25%" /><br/>
         <div className="row small-up-2 medium-up-3 large-up-4">
           {albums}
         </div>

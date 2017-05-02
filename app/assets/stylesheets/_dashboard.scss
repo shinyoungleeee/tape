@@ -1,1 +1,25 @@
+.dashboard-title {
+  background-image: image-url("space.jpg");
+  background-size: 100% auto;
+  background-position: center right;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ECECEC;
+  margin-left: 2rem;
+  margin-bottom: 5vh;
 
+  h1 {
+    font-size: 10vmin;
+  }
+}
+
+.dashboard-title li {
+  a {
+    padding-left: 0;
+    margin-left: 1rem;
+  }
+
+  a:hover {
+    border-bottom: solid 1px #1B1B1B;
+  }
+}

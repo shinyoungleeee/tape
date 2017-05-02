@@ -24,7 +24,7 @@ class AlbumTile extends React.Component {
             </div>
           </div>
         </div>
-        <div>
+        <div className="text-center">
           {links}
         </div>
       </div>

@@ -1,0 +1,63 @@
+h1 {
+  color: #ECECEC;
+}
+
+.landing-page {
+  background-color: #1B1B1B;
+}
+
+.landing-page-title {
+  background-image: image-url("tape.jpg");
+  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100vh;
+  filter: invert(100%);
+  padding: 1px;
+}
+
+.landing-page-title h1 {
+  background-image: image-url("moon-3.jpg");
+  background-size: contain;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ECECEC;
+  font-size: 20vmin;
+  filter: invert(100%);
+}
+
+.landing-page-nav {
+  filter: invert(100%);
+  color: #ECECEC;
+  margin: 5vh 5vw;
+
+  img {
+    padding: 3px;
+    border: solid 1px #ECECEC;
+    height: 7.5vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
+
+#landing-page-nav-links a {
+  padding-left: 0;
+}
+
+#landing-page-nav-links a:hover {
+  border-bottom: solid 1px $primary-color;
+}
+
+.not-visible {
+  visibility: hidden;
+}
+
+.landing-page-search {
+  margin-top: 40vh;
+  filter: invert(100%);
+
+  .input-group-field {
+    background: #1B1B1B;
+    color: #ECECEC;
+  }
+}

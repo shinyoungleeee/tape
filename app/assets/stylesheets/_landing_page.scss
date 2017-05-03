@@ -17,13 +17,13 @@ h1 {
 }
 
 .landing-page-title h1 {
-  background-image: image-url("moon-3.jpg");
-  background-size: contain;
+  background-image: image-url("moon.jpeg");
+  background-size: 110% auto;
+  background-position: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: #ECECEC;
   font-size: 20vmin;
-  filter: invert(100%);
 }
 
 .landing-page-nav {

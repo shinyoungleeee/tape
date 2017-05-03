@@ -8,6 +8,10 @@ class LandingPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    $(function(){ $(document).foundation(); });
+  }
+
   render() {
     return(
       <div className="landing-page">

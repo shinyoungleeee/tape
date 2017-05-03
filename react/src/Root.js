@@ -15,7 +15,7 @@ class Root extends React.Component {
   render() {
     return(
       <Router history={browserHistory}>
-        <Route path='/' component={LandingPage}/>
+        <Route path='/' component={LandingPage} />
         <Route path='albums' name='albums' component={Dashboard}>
           <IndexRoute component={AlbumsIndexContainer} />
         </Route>

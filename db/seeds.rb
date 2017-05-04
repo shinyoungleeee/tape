@@ -38,6 +38,6 @@ apple_music_links = [
 
 i = 1
 apple_music_links.each do |link|
-  AlbumUrl.create(album: Album.find(i), service: "Apple Music" url: link + '?app=music')
+  AlbumUrl.create(album: Album.find(i), service: "Apple Music", url: link + '?app=music')
   i += 1
 end

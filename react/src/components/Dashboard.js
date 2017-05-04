@@ -25,6 +25,9 @@ class Dashboard extends React.Component {
               </ul>
             </div>
           </div>
+          <div>
+            <a href="/users/auth/facebook">Sign in with Facebook</a>
+          </div>
         </div>
         {this.props.children}
       </div>

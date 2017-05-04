@@ -20,6 +20,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'valid_attribute'
   gem 'faker', github: 'stympy/faker'
+  gem 'dotenv-rails'
 end
 
 group :development do

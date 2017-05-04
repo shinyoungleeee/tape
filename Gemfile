@@ -10,6 +10,7 @@ gem "foundation-rails"
 gem 'rspotify', github: 'guilhermesad/rspotify'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'itunes-search-api'
 
 group :development, :test do
   gem 'capybara'

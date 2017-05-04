@@ -8,6 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem "foundation-rails"
 gem 'rspotify', github: 'guilhermesad/rspotify'
+gem 'devise'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'capybara'

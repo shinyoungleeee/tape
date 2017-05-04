@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem "foundation-rails"
 gem 'rspotify', github: 'guilhermesad/rspotify'
+gem 'itunes-search-api'
 
 group :development, :test do
   gem 'capybara'

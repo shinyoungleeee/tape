@@ -22,8 +22,7 @@ describe('AlbumTile', () => {
   })
 
   it('should render a series of divs', () => {
-    console.log(wrapper)
-    expect(wrapper.find('div.column.column-block').isPresent()).toBe(true);
-    expect(wrapper.find('div.album-container').isPresent()).toBe(true);
+    expect(wrapper.find('div.column.column-block')).toBePresent();
+    expect(wrapper.find('div.album-container')).toBePresent();
   });
 });

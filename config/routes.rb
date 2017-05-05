@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :albums
+      resource :users, only: [:show]
     end
   end
 end

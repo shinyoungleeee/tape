@@ -67,7 +67,7 @@ class Dashboard extends React.Component {
     }
     return(
       <div>
-        <div className="flex-container align-justify">
+        <div className="dashboard flex-container align-justify">
           <div className="dashboard-title flex-container align-right align-bottom">
             <div>
               <h1><Link to={'/'}>t a p e</Link></h1>

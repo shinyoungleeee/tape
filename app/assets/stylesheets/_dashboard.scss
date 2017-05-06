@@ -1,3 +1,7 @@
+.dashboard {
+  margin-bottom: 5vh;
+}
+
 .dashboard-title {
   background-image: image-url("space.jpg");
   background-size: 100% auto;
@@ -6,7 +10,6 @@
   -webkit-text-fill-color: transparent;
   color: #ECECEC;
   margin-left: 2rem;
-  margin-bottom: 5vh;
 
   h1 {
     font-size: 10vmin;
@@ -21,5 +24,18 @@
 
   a:hover {
     border-bottom: solid 1px #1B1B1B;
+  }
+}
+
+.dashboard-user {
+  padding-right: 2rem;
+  padding-bottom: .7rem;
+
+  img {
+    padding: 3px;
+    border: solid 1px #1B1B1B;
+    height: 7.5vh;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 }

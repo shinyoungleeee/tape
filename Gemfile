@@ -8,7 +8,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem "foundation-rails"
 gem 'rspotify', github: 'guilhermesad/rspotify'
+gem 'devise'
+gem 'omniauth-facebook'
 gem 'itunes-search-api'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'capybara'
@@ -19,6 +22,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'valid_attribute'
   gem 'faker', github: 'stympy/faker'
+  gem 'dotenv-rails'
 end
 
 group :development do

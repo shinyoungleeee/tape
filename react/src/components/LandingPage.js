@@ -1,15 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import AlbumTile from './AlbumTile';
+
 class LandingPage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
       currentUser: {},
-      signedIn: false
+      signedIn: false,
+      albums: []
     }
 
     this.getUserData = this.getUserData.bind(this)
+    this.search = this.search.bind(this)
   }
 
   getUserData() {
@@ -31,6 +35,40 @@ class LandingPage extends React.Component {
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  search(event) {
+    if (event.target.value == "") {
+      this.setState({ albums: [] })
+    } else {
+      let searchPayLoad = {
+        search: {
+          search_text: event.target.value
+        }
+      }
+      fetch(`/api/v1/search.json`, {
+        credentials: 'same-origin',
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(searchPayLoad)
+      })
+        .then(response => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+                error = new Error(errorMessage);
+            throw(error);
+          }
+        })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            albums: body
+          });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
   }
 
   componentDidMount() {
@@ -63,6 +101,21 @@ class LandingPage extends React.Component {
         )
       }
     }
+
+    let searchResult = this.state.albums.map((album) => {
+      return(
+        <AlbumTile
+          key={album.id}
+          id={album.id}
+          name={album.name}
+          art={album.image_url}
+          year={album.year}
+          kind={album.kind}
+          links={album.album_urls}
+        />
+      )
+    })
+
     return(
       <div className="landing-page">
         <div className="landing-page-title">
@@ -88,10 +141,8 @@ class LandingPage extends React.Component {
           <div className="row">
             <form className="landing-page-search">
               <div className="input-group">
-                <input className="input-group-field" type="url" />
-                <div className="input-group-button">
-                  <input type="submit" className="button" value="Submit" />
-                </div>
+                <span className="input-group-label">Search for Albums:</span>
+                <input className="input-group-field" type="text" onChange={this.search} />
               </div>
             </form>
           </div>
@@ -100,6 +151,9 @@ class LandingPage extends React.Component {
           <br/><hr/><br/>
           <div id="albums" className="row">
             <h1>Albums</h1>
+          </div>
+          <div className="row small-up-2 medium-up-3 large-up-4">
+            {searchResult}
           </div>
           <br/><hr/><br/>
           <div id="songs" className="row">

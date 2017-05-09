@@ -54,6 +54,10 @@ h1 {
   visibility: hidden;
 }
 
+#search {
+  padding-top: 5vh;
+}
+
 .landing-page-search {
   margin-top: 40vh;
   filter: invert(100%);
@@ -61,5 +65,14 @@ h1 {
   .input-group-field {
     background: #1B1B1B;
     color: #ECECEC;
+  }
+}
+
+.album-search {
+  white-space: nowrap;
+  overflow-x: scroll;
+
+  div.column.column-block {
+    display:inline-block;
   }
 }

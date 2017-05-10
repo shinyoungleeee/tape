@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :albums
       resource :users, only: [:show]
+      post '/search/albums', to: 'search#albums'
+      post '/search/streams', to: 'search#streams'
+      get '/search/test', to: 'search#test'
     end
   end
 end

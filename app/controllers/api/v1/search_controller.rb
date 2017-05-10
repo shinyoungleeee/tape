@@ -9,6 +9,10 @@ class Api::V1::SearchController < ApiController
     render json: AlbumSearch.new(search_params["search_text"]).albums
   end
 
+  def test
+    render json: AlbumSearch.new("bon iver").albums
+  end
+
   private
 
   def search_params

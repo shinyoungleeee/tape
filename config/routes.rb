@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resource :users, only: [:show]
       post '/search/albums', to: 'search#albums'
       post '/search/streams', to: 'search#streams'
+      get '/search/test', to: 'search#test'
     end
   end
 end

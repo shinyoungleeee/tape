@@ -113,6 +113,7 @@ class LandingPage extends React.Component {
       .then(body => {
         this.setState({ newAlbums: body });
       })
+      .then(() => {$(function(){ $("#albums").foundation(); });})
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -133,7 +134,7 @@ class LandingPage extends React.Component {
     let userDiv = () => {
       return(
         <div className="media-object">
-          <div className="media-object-section" data-equalizer-watch>
+          <div className="media-object-section" data-equalizer-watch="nav-eq">
             <a href="/users/auth/facebook">Sign in with Facebook</a>
           </div>
         </div>
@@ -143,7 +144,7 @@ class LandingPage extends React.Component {
       userDiv = () => {
         return(
           <div className="media-object">
-            <div className="media-object-section text-right" data-equalizer-watch>
+            <div className="media-object-section text-right" data-equalizer-watch="nav-eq">
               <p>{this.state.currentUser.handle}</p>
               <a rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
             </div>
@@ -194,9 +195,9 @@ class LandingPage extends React.Component {
     return(
       <div className="landing-page">
         <div className="landing-page-title">
-          <div className="landing-page-nav flex-container align-justify" data-equalizer>
+          <div className="landing-page-nav flex-container align-justify" data-equalizer="nav-eq">
             <div className="media-object">
-              <div className="media-object-section" data-equalizer-watch>
+              <div className="media-object-section" data-equalizer-watch="nav-eq">
                 <p data-toggle="landing-page-nav-links">(+) Navigation</p>
                   <div className="not-visible" id="landing-page-nav-links" data-toggler="not-visible">
                     <ul className="menu">
@@ -222,39 +223,41 @@ class LandingPage extends React.Component {
             </form>
           </div>
         </div>
-        <div id="albums" className={albumShow}>
-          <div className="row">
-            <h1>Albums</h1>
+        <div id="albums" data-equalizer="albums-eq">
+          <div className={albumShow}>
+            <div className="row">
+              <h1>Albums</h1>
+            </div>
+            <br/>
+            <div className="row">
+              <div className="album-search">
+                {albumSearch}
+              </div>
+            </div>
+            <hr/><br/>
           </div>
-          <br/>
-          <div className="row">
-            <div className="album-search">
-              {albumSearch}
+          <div className={this.state.streamSearchShow}>
+            <div className="row">
+              <div className="small-12 columns button" onClick={this.clickStreamSearch}>
+                Search Streaming Services
+              </div>
+            </div>
+            <div className="row">
+              <br/><br/>
             </div>
           </div>
-          <hr/><br/>
-        </div>
-        <div className={this.state.streamSearchShow}>
-          <div className="row">
-            <div className="small-12 columns button" onClick={this.clickStreamSearch}>
-              Search Streaming Services
+          <div className={newAlbumShow}>
+            <div className="row">
+              <h1>New Albums</h1>
             </div>
-          </div>
-          <div className="row">
-            <br/><br/>
-          </div>
-        </div>
-        <div id="new-albums" className={newAlbumShow}>
-          <div className="row">
-            <h1>New Albums</h1>
-          </div>
-          <br/>
-          <div className="row">
-            <div className="album-search">
-              {newAlbumSearch}
+            <br/>
+            <div className="row">
+              <div className="album-search">
+                {newAlbumSearch}
+              </div>
             </div>
+            <hr/><br/>
           </div>
-          <hr/><br/>
         </div>
       </div>
     )

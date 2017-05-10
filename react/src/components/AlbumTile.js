@@ -17,7 +17,7 @@ class AlbumTile extends React.Component {
     return(
       <div className="column column-block">
         <div className="album-container">
-          <img src={this.props.art} className="thumbnail album-art" alt={this.props.name + " Album Art"} />
+          <img src={this.props.art} className="thumbnail album-art" alt={this.props.name + " Album Art"} data-equalizer-watch="albums-eq" />
           <div className="album-overlay">
             <div className="album-text">
               <h5>{this.props.name}</h5>

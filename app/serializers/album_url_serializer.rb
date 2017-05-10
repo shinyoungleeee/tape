@@ -1,4 +1,4 @@
 class AlbumUrlSerializer < ActiveModel::Serializer
-  attributes :id, :album_id, :service, :url
+  attributes :id, :service, :url
   belongs_to :album
 end

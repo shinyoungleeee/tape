@@ -11,7 +11,7 @@ class AlbumSearch
       album.album_urls << AlbumUrl.new(service: "Spotify", url: spotify_album.external_urls["spotify"])
       @albums << album
     end
-    ITunesSearchAPI.search(term: search_text, :country => "US", :media => "music", entity: "album").each do |itunes_album|
+    ITunesSearchAPI.search(term: search_text, country: "US", media: "music", entity: "album").each do |itunes_album|
       already_exists = Album.all.any? do |existing_album|
         existing_album.name == itunes_album["collectionName"]
       end

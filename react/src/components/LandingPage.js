@@ -113,7 +113,6 @@ class LandingPage extends React.Component {
       .then(body => {
         this.setState({ newAlbums: body });
       })
-      .then(() => {$(function(){ $("#albums").foundation(); });})
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
@@ -134,7 +133,7 @@ class LandingPage extends React.Component {
     let userDiv = () => {
       return(
         <div className="media-object">
-          <div className="media-object-section" data-equalizer-watch="nav-eq">
+          <div className="media-object-section" data-equalizer-watch>
             <a href="/users/auth/facebook">Sign in with Facebook</a>
           </div>
         </div>
@@ -144,7 +143,7 @@ class LandingPage extends React.Component {
       userDiv = () => {
         return(
           <div className="media-object">
-            <div className="media-object-section text-right" data-equalizer-watch="nav-eq">
+            <div className="media-object-section text-right" data-equalizer-watch>
               <p>{this.state.currentUser.handle}</p>
               <a rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
             </div>
@@ -195,9 +194,9 @@ class LandingPage extends React.Component {
     return(
       <div className="landing-page">
         <div className="landing-page-title">
-          <div className="landing-page-nav flex-container align-justify" data-equalizer="nav-eq">
+          <div className="landing-page-nav flex-container align-justify" data-equalizer>
             <div className="media-object">
-              <div className="media-object-section" data-equalizer-watch="nav-eq">
+              <div className="media-object-section" data-equalizer-watch>
                 <p data-toggle="landing-page-nav-links">(+) Navigation</p>
                   <div className="not-visible" id="landing-page-nav-links" data-toggler="not-visible">
                     <ul className="menu">
@@ -218,18 +217,18 @@ class LandingPage extends React.Component {
             <form id="search" className="landing-page-search">
               <div className="input-group">
                 <span className="input-group-label">Search for Albums:</span>
-                <input className="input-group-field" type="text" onChange={this.search} />
+                <input className="input-group-field" type="text" placeholder="Search by Album Title" onChange={this.search} />
               </div>
             </form>
           </div>
         </div>
-        <div id="albums" data-equalizer="albums-eq">
+        <div id="albums">
           <div className={albumShow}>
             <div className="row">
               <h1>Albums</h1>
             </div>
             <br/>
-            <div className="row">
+            <div className="row large-up-4">
               <div className="album-search">
                 {albumSearch}
               </div>

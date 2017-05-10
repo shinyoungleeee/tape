@@ -76,4 +76,9 @@ h1 {
     white-space: normal;
     display:inline-block;
   }
+
+  img.thumbnail.album-art {
+    max-height: 300px;
+    width: auto;
+  }
 }

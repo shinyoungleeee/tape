@@ -48,7 +48,7 @@ class AlbumsIndexContainer extends React.Component {
           <h3>My Albums</h3>
         </div>
         <hr width="25%" /><br/>
-        <div className="row small-up-2 medium-up-3 large-up-4" data-equalizer="albums-eq">
+        <div className="row small-up-2 medium-up-3 large-up-4">
           {albums}
         </div>
       </div>

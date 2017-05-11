@@ -11,6 +11,13 @@ class AlbumsIndexContainer extends React.Component {
 
   render() {
     let albums = this.props.albums.map(album => {
+      let likeButton = "unliked"
+      let user_liked = album.album_likes.some(like => {
+        return like.is_current_user
+      })
+      if (user_liked) {
+        likeButton = "liked"
+      }
       return(
         <AlbumTile
           key={album.id}
@@ -21,6 +28,7 @@ class AlbumsIndexContainer extends React.Component {
           kind={album.kind}
           artists={album.artists}
           links={album.album_urls}
+          likeButton={likeButton}
         />
       )
     })

@@ -113,6 +113,10 @@ class LandingPage extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  like() {
+    
+  }
+
   componentDidMount() {
     this.getUserData();
     $(function(){ $(document).foundation(); });
@@ -174,6 +178,13 @@ class LandingPage extends React.Component {
     }
 
     let albumSearch = this.state.albums.map((album) => {
+      let likeButton = "unliked"
+      let user_liked = album.album_likes.some(like => {
+        return like.is_current_user
+      })
+      if (user_liked) {
+        likeButton = "liked"
+      }
       return(
         <AlbumTile
           key={album.id}
@@ -184,6 +195,7 @@ class LandingPage extends React.Component {
           kind={album.kind}
           artists={album.artists}
           links={album.album_urls}
+          likeButton={likeButton}
         />
       )
     })
@@ -193,6 +205,13 @@ class LandingPage extends React.Component {
     }
 
     let newAlbumSearch = this.state.newAlbums.map((album, index) => {
+      let likeButton = "unliked"
+      let user_liked = album.album_likes.some(like => {
+        return like.is_current_user
+      })
+      if (user_liked) {
+        likeButton = "liked"
+      }
       return(
         <AlbumTile
           key={index}
@@ -203,6 +222,7 @@ class LandingPage extends React.Component {
           kind={album.kind}
           artists={album.artists}
           links={album.album_urls}
+          likeButton={likeButton}
         />
       )
     })

@@ -25,6 +25,7 @@
   opacity: 0;
   transition: .5s ease;
   background-color: #1B1B1B;
+  padding: 10px;
   overflow-x: scroll;
 }
 
@@ -40,4 +41,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+}
+
+.like-button {
+  height: 30px;
+  padding: 5px;
+  border: solid 1px #ECECEC;
+  border-radius: 25%;
+}
+
+.liked {
+  background: #ECECEC;
 }

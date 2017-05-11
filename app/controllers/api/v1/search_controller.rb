@@ -10,7 +10,7 @@ class Api::V1::SearchController < ApiController
   end
 
   def test
-    render json: AlbumSearch.stream_search("bon iver")
+    render json: AlbumSearch.stream_search("japanese house pools to bathe in")
   end
 
   private

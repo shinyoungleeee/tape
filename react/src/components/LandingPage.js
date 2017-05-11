@@ -164,6 +164,7 @@ class LandingPage extends React.Component {
           art={album.image_url}
           year={album.year}
           kind={album.kind}
+          artists={album.artists}
           links={album.album_urls}
         />
       )
@@ -182,6 +183,7 @@ class LandingPage extends React.Component {
           art={album.image_url}
           year={album.year}
           kind={album.kind}
+          artists={album.artists}
           links={album.album_urls}
         />
       )
@@ -213,11 +215,11 @@ class LandingPage extends React.Component {
             </div>
             {userDiv()}
           </div>
-          <div className="row" onClick={this.clickSearch}>
-            <form id="search" className="landing-page-search">
+          <div className="row landing-page-search" onClick={this.clickSearch}>
+            <form id="search">
               <div className="input-group">
                 <span className="input-group-label">Search for Albums:</span>
-                <input className="input-group-field" type="text" placeholder="Search by Album Title" onChange={this.search} />
+                <input className="input-group-field" type="text" placeholder="Search by Album Title or Artist Name" onChange={this.search} />
               </div>
             </form>
           </div>

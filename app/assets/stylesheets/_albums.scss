@@ -25,6 +25,7 @@
   opacity: 0;
   transition: .5s ease;
   background-color: #1B1B1B;
+  overflow-x: scroll;
 }
 
 .album-container:hover .album-overlay {

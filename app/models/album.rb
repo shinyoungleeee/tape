@@ -9,8 +9,4 @@ class Album < ApplicationRecord
   has_many :album_urls
   has_many :album_associations
   has_many :artists, through: :album_associations
-
-  def self.search(search)
-    where("name ILIKE ?", "%#{search}%") | self.joins(:artists).where("artists.name ILIKE ?", "%#{search}%")
-  end
 end

@@ -5,8 +5,7 @@ class Dashboard extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      currentUser: {},
-      signedIn: false
+      currentUser: {}
     }
 
     this.getUserData = this.getUserData.bind(this)
@@ -25,10 +24,7 @@ class Dashboard extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({
-          currentUser: body.current_user,
-          signedIn: body.signed_in
-        });
+        this.setState({ currentUser: body });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -50,7 +46,7 @@ class Dashboard extends React.Component {
         </div>
       )
     }
-    if (this.state.signedIn) {
+    if (this.state.currentUser) {
       userDiv = () => {
         return(
           <div className="dashboard-user flex-container align-bottom">

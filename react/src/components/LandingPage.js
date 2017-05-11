@@ -8,7 +8,6 @@ class LandingPage extends React.Component {
     super(props)
     this.state = {
       currentUser: {},
-      signedIn: false,
       search: {},
       albums: [],
       streamSearchShow: "invisible",
@@ -35,15 +34,13 @@ class LandingPage extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({
-          currentUser: body.current_user,
-          signedIn: body.signed_in
-        });
+        this.setState({ currentUser: body });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  clickSearch() {
+  clickSearch(event) {
+    event.preventDefault();
     $('html, body').animate({
       scrollTop: $("#search").offset().top
     }, 1500);
@@ -139,7 +136,17 @@ class LandingPage extends React.Component {
         </div>
       )
     }
-    if (this.state.signedIn) {
+    let userLinks = () => {
+      return(
+        <ul className="menu invisible">
+          <li className="menu-text">: </li>
+          <li><Link to={'/groups'}>My Groups</Link></li>
+          <li><Link to={'/albums'}>My Albums</Link></li>
+          <li><Link to={'/artists'}>My Artists</Link></li>
+        </ul>
+      )
+    };
+    if (this.state.currentUser) {
       userDiv = () => {
         return(
           <div className="media-object">
@@ -151,6 +158,17 @@ class LandingPage extends React.Component {
               <img className="landing-page-avatar" src={this.state.currentUser.image} alt="User Avatar" />
             </div>
           </div>
+        )
+      }
+
+      userLinks = () => {
+        return(
+          <ul className="menu">
+            <li className="menu-text">{this.state.currentUser.handle}: </li>
+            <li><Link to={'/groups'}>My Groups</Link></li>
+            <li><Link to={`users/${this.state.currentUser.id}/albums`}>My Albums</Link></li>
+            <li><Link to={'/artists'}>My Artists</Link></li>
+          </ul>
         )
       }
     }
@@ -202,11 +220,13 @@ class LandingPage extends React.Component {
                 <p data-toggle="landing-page-nav-links">(+) Navigation</p>
                   <div className="not-visible" id="landing-page-nav-links" data-toggler="not-visible">
                     <ul className="menu">
-                      <li><Link to={'/albums'}>My Albums</Link></li>
-                      <li><Link to={'/songs'}>My Songs</Link></li>
-                      <li><Link to={'/artists'}>My Artists</Link></li>
-                      <li><Link to={'/playlists'}>My Playlists/DJs</Link></li>
+                      <li className="menu-text">Global: </li>
+                      <li><a href="#" onClick={this.clickSearch}>Search</a></li>
+                      <li><Link to={'/groups'}>Groups</Link></li>
+                      <li><Link to={'/albums'}>Albums</Link></li>
+                      <li><Link to={'/artists'}>Artists</Link></li>
                     </ul>
+                    {userLinks()}
                   </div>
               </div>
             </div>

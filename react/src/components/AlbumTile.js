@@ -11,7 +11,7 @@ class AlbumTile extends React.Component {
   render() {
     let links = this.props.links.map(link => {
       return(
-        <a href={link.url}><img className="album-url-logos" src={link.service + ".png"} alt={link.service + " Logo"} /></a>
+        <a href={link.url}><img className="album-url-logos" src={"/" + link.service + ".png"} alt={link.service + " Logo"} /></a>
       )
     })
 

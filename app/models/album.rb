@@ -7,8 +7,6 @@ class Album < ApplicationRecord
   }
 
   has_many :album_urls
-
-  def self.search(search)
-    where("name ILIKE ?", "%#{search}%")
-  end
+  has_many :album_associations
+  has_many :artists, through: :album_associations
 end

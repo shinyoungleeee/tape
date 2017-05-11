@@ -38,6 +38,7 @@ class AlbumsIndexContainer extends React.Component {
           art={album.image_url}
           year={album.year}
           kind={album.kind}
+          artists={album.artists}
           links={album.album_urls}
         />
       )

@@ -7,4 +7,6 @@ RSpec.describe Album, type: :model do
   it { should allow_values('album', 'single', 'compilation').for(:kind) }
   it { should_not allow_values('dfsdfsdfsd', 'albums', 'singles', 'compilations').for(:kind) }
   it { should have_many(:album_urls) }
+  it { should have_many(:album_associations) }
+  it { should have_many(:artists) }
 end

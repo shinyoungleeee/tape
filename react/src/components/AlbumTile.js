@@ -14,6 +14,12 @@ class AlbumTile extends React.Component {
         <a href={link.url}><img className="album-url-logos" src={link.service + ".png"} alt={link.service + " Logo"} /></a>
       )
     })
+
+    let artists = this.props.artists.map(artist => {
+      return(
+        <h6>{artist.name}</h6>
+      )
+    })
     return(
       <div className="column column-block">
         <div className="album-container">
@@ -21,6 +27,8 @@ class AlbumTile extends React.Component {
           <div className="album-overlay">
             <div className="album-text">
               <h5>{this.props.name}</h5>
+              <hr width="50%" />
+              {artists}
             </div>
           </div>
         </div>

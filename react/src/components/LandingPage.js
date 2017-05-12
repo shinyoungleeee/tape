@@ -7,7 +7,7 @@ class LandingPage extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      currentUser: {},
+      currentUser: null,
       search: {},
       albums: [],
       streamSearchShow: "invisible",
@@ -20,7 +20,7 @@ class LandingPage extends React.Component {
     this.clickStreamSearch = this.clickStreamSearch.bind(this)
     this.streamSearch = this.streamSearch.bind(this)
     this.newAlbum = this.newAlbum.bind(this)
-    // this.like = this.like.bind(this)
+    this.like = this.like.bind(this)
   }
 
   getUserData() {
@@ -179,7 +179,7 @@ class LandingPage extends React.Component {
     let userDiv = () => {
       return(
         <div className="media-object">
-          <div className="media-object-section" data-equalizer-watch>
+          <div className="media-object-section">
             <a href="/users/auth/facebook">Sign in with Facebook</a>
           </div>
         </div>
@@ -199,12 +199,12 @@ class LandingPage extends React.Component {
       userDiv = () => {
         return(
           <div className="media-object">
-            <div className="media-object-section text-right" data-equalizer-watch>
+            <div className="media-object-section text-right middle">
               <p>{this.state.currentUser.handle}</p>
               <a rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
             </div>
             <div className="media-object-section">
-              <img className="landing-page-avatar" src={this.state.currentUser.image} alt="User Avatar" />
+              <img className="landing-page-avatar" src={this.state.currentUser.image + "/picture?type=large"} alt="User Avatar" />
             </div>
           </div>
         )
@@ -256,7 +256,7 @@ class LandingPage extends React.Component {
     let newAlbumSearch = this.state.newAlbums.map((album, index) => {
       let likeButton = "unliked"
       let user_liked = album.album_likes.some(like => {
-        return like.is_current_user
+        return like.is_current_user && like.like === "liked"
       })
       if (user_liked) {
         likeButton = "liked"
@@ -287,9 +287,9 @@ class LandingPage extends React.Component {
     return(
       <div className="landing-page">
         <div className="landing-page-title">
-          <div className="landing-page-nav flex-container align-justify" data-equalizer>
+          <div className="landing-page-nav flex-container align-justify">
             <div className="media-object">
-              <div className="media-object-section" data-equalizer-watch>
+              <div className="media-object-section">
                 <p data-toggle="landing-page-nav-links">(+) Navigation</p>
                   <div className="not-visible" id="landing-page-nav-links" data-toggler="not-visible">
                     <ul className="menu">

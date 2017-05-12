@@ -8,9 +8,12 @@ class AllAlbumsFetch extends React.Component {
     this.state = {
       albums: []
     }
+
+    this.getAlbumData = this.getAlbumData.bind(this)
+    this.like = this.like.bind(this)
   }
 
-  componentDidMount() {
+  getAlbumData() {
     fetch('/api/v1/albums.json', { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
@@ -28,11 +31,35 @@ class AllAlbumsFetch extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  like(albumId) {
+    fetch(`/api/v1/albums/${albumId}/like.json`, {
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(() => {
+        this.getAlbumData()
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidMount() {
+    this.getAlbumData()
+  }
+
   render() {
     return(
       <AlbumsIndexContainer
         albums={this.state.albums}
         user={"Global"}
+        like={this.like}
       />
     )
   }

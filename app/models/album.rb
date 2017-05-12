@@ -12,6 +12,6 @@ class Album < ApplicationRecord
   has_many :album_likes
 
   def self.liked_by(user)
-    joins(:album_likes).where(album_likes: { user: user })
+    joins(:album_likes).where(album_likes: { user: user, like: "liked" })
   end
 end

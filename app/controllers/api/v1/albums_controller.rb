@@ -21,7 +21,7 @@ class Api::V1::AlbumsController < ApiController
       new_url.save
     end
     AlbumLike.create(user: current_user, album: album)
-    render json: { status: "ok" }
+    render json: { status: "ok", statusText: "Successfully added and liked" }
   end
 
   def like
@@ -36,7 +36,7 @@ class Api::V1::AlbumsController < ApiController
         like.liked!
       end
     end
-    render json: Album.all
+    render json: { status: "ok", statusText: "Successfully updated" }
   end
 
   private

@@ -127,10 +127,20 @@ class LandingPage extends React.Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ album: album })
     })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
       .then(() => {
         this.albumSearch({ search: this.state.search })
         this.streamSearch({ search: this.state.search })
-      });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   like(albumId) {
@@ -146,9 +156,8 @@ class LandingPage extends React.Component {
           throw(error);
         }
       })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ albums: body });
+      .then(() => {
+        this.albumSearch({ search: this.state.search })
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }

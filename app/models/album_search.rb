@@ -2,7 +2,18 @@ class AlbumSearch
   alias :read_attribute_for_serialization :send
 
   def self.album_search(search_text)
-    Album.where("name ILIKE ?", "%#{search_text}%") | Album.joins(:artists).where("artists.name ILIKE ?", "%#{search_text}%")
+    removed_punctuation = search_text.gsub(/\W/, ' ')
+    split_words = removed_punctuation.split(" ")
+    search_words = split_words.map{ |e| "%#{e}%" }
+
+    search_albums = Album.where("name ILIKE ?", search_words[0]) | Album.joins(:artists).where("artists.name ILIKE ?", search_words[0])
+    i = 1
+    while i < search_words.length do
+      next_search = Album.where("name ILIKE ?", search_words[i]) | Album.joins(:artists).where("artists.name ILIKE ?", search_words[i])
+      search_albums = (search_albums & next_search)
+      i += 1
+    end
+    search_albums
   end
 
   def self.stream_search(search_text)

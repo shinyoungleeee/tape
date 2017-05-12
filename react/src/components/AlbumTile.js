@@ -30,7 +30,7 @@ class AlbumTile extends React.Component {
               <hr width="50%" />
               {artists}
             </div>
-            <img className={"like-button " + this.props.likeButton} src={"/" + this.props.likeButton + ".png"} alt={this.props.likeButton + " button"} />
+            <img className={"like-button " + this.props.likeButton} src={"/" + this.props.likeButton + ".png"} alt={this.props.likeButton + " button"} onClick={this.props.clickLikeHandler} />
           </div>
         </div>
         <div className="text-center">

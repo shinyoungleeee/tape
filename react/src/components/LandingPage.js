@@ -19,6 +19,8 @@ class LandingPage extends React.Component {
     this.albumSearch = this.albumSearch.bind(this)
     this.clickStreamSearch = this.clickStreamSearch.bind(this)
     this.streamSearch = this.streamSearch.bind(this)
+    this.newAlbum = this.newAlbum.bind(this)
+    // this.like = this.like.bind(this)
   }
 
   getUserData() {
@@ -110,11 +112,45 @@ class LandingPage extends React.Component {
       .then(body => {
         this.setState({ newAlbums: body });
       })
+      .then(() => {
+        $('html, body').animate({
+          scrollTop: $("#new-albums").offset().top
+        }, 1500);
+      })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  like() {
-    
+  newAlbum(album) {
+    fetch(`/api/v1/albums.json`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ album: album })
+    })
+      .then(() => {
+        this.albumSearch({ search: this.state.search })
+        this.streamSearch({ search: this.state.search })
+      });
+  }
+
+  like(albumId) {
+    fetch(`/api/v1/albums/${albumId}/like.json`, {
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ albums: body });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   componentDidMount() {
@@ -185,6 +221,9 @@ class LandingPage extends React.Component {
       if (user_liked) {
         likeButton = "liked"
       }
+      let clickLikeHandler = () => {
+        this.like(album.id)
+      }
       return(
         <AlbumTile
           key={album.id}
@@ -196,6 +235,7 @@ class LandingPage extends React.Component {
           artists={album.artists}
           links={album.album_urls}
           likeButton={likeButton}
+          clickLikeHandler={clickLikeHandler}
         />
       )
     })
@@ -212,6 +252,9 @@ class LandingPage extends React.Component {
       if (user_liked) {
         likeButton = "liked"
       }
+      let clickLikeHandler = () => {
+        this.newAlbum(album)
+      }
       return(
         <AlbumTile
           key={index}
@@ -223,6 +266,7 @@ class LandingPage extends React.Component {
           artists={album.artists}
           links={album.album_urls}
           likeButton={likeButton}
+          clickLikeHandler={clickLikeHandler}
         />
       )
     })
@@ -264,6 +308,13 @@ class LandingPage extends React.Component {
             </form>
           </div>
         </div>
+        <div className={this.state.streamSearchShow}>
+          <div className="row align-center">
+            <div className="small-3 columns button" onClick={this.clickStreamSearch}>
+              Search Streaming Services
+            </div>
+          </div>
+        </div>
         <div id="albums">
           <div className={albumShow}>
             <div className="row">
@@ -277,17 +328,12 @@ class LandingPage extends React.Component {
             </div>
             <hr/><br/>
           </div>
-          <div className={this.state.streamSearchShow}>
-            <div className="row">
-              <div className="small-12 columns button" onClick={this.clickStreamSearch}>
-                Search Streaming Services
-              </div>
-            </div>
+        </div>
+        <div id="new-albums">
+          <div className={newAlbumShow}>
             <div className="row">
               <br/><br/>
             </div>
-          </div>
-          <div className={newAlbumShow}>
             <div className="row">
               <h1>New Albums</h1>
             </div>

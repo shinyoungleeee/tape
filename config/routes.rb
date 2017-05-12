@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :albums
+      resources :albums do
+        get '/like', to: 'albums#like'
+      end
       resources :users do
         get '/albums', to: 'users#albums'
       end

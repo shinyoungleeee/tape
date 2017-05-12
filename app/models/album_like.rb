@@ -4,10 +4,9 @@ class AlbumLike < ApplicationRecord
   validates :user, presence: true
   validates :user, uniqueness: { scope: :album }
   validates :album, presence: true
-  validates :like, numericality: {
-    only_integer: true,
-    greater_than_or_equal_to: 0,
-    less_than_or_equal_to: 1
+  validates :like, inclusion: {
+    in: ["liked", "unliked"],
+    message: "must be 'liked' or 'unliked'"
   }
 
   belongs_to :user

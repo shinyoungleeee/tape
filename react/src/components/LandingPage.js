@@ -216,7 +216,7 @@ class LandingPage extends React.Component {
     let albumSearch = this.state.albums.map((album) => {
       let likeButton = "unliked"
       let user_liked = album.album_likes.some(like => {
-        return like.is_current_user
+        return like.is_current_user && like.like === "liked"
       })
       if (user_liked) {
         likeButton = "liked"

@@ -31,9 +31,9 @@ class Api::V1::AlbumsController < ApiController
       AlbumLike.create(album: album, user: current_user)
     else
       if like.liked?
-        like.update(like: 0)
+        like.unliked!
       else like.unliked?
-        like.update(like: 1)
+        like.liked!
       end
     end
     render json: Album.all

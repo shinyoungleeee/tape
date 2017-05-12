@@ -4,15 +4,21 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   get 'albums', to: 'static_pages#index'
+  get 'groups', to: 'static_pages#index'
   get 'users/:user_id/albums', to: 'static_pages#index'
+  get 'users/:user_id/groups', to: 'static_pages#index'
 
   namespace :api do
     namespace :v1 do
+      resources :groups do
+        get '/join', to: 'groups#join'
+      end
       resources :albums do
         get '/like', to: 'albums#like'
       end
       resources :users do
         get '/albums', to: 'users#albums'
+        get '/groups', to: 'users#groups'
       end
       post '/search/albums', to: 'search#albums'
       post '/search/streams', to: 'search#streams'

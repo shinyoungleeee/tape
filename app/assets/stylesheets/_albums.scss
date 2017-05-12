@@ -1,3 +1,23 @@
+#albums {
+  padding-top: 10vh;
+  position: relative;
+  min-height: 100vh;
+}
+
+#albums::after {
+  content: "";
+  background: image-url("albums.jpeg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  position: absolute;
+}
+
 .album-url-logos {
   height: 40px;
   margin-bottom: 2vw;

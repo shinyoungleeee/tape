@@ -5,6 +5,8 @@ import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import AllAlbumsFetch from './containers/AllAlbumsFetch';
 import UserAlbumsFetch from './containers/UserAlbumsFetch';
+import AllGroupsFetch from './containers/AllGroupsFetch';
+import UserGroupsFetch from './containers/UserGroupsFetch';
 
 class Root extends React.Component {
   constructor(props){
@@ -20,8 +22,12 @@ class Root extends React.Component {
         <Route path='albums' name='albums' component={Dashboard}>
           <IndexRoute component={AllAlbumsFetch} />
         </Route>
-        <Route path='users/:id/albums' name='user albums' component={Dashboard}>
-          <IndexRoute component={UserAlbumsFetch} />
+        <Route path='groups' name='groups' component={Dashboard}>
+          <IndexRoute component={AllGroupsFetch} />
+        </Route>
+        <Route path='users/:id' name='users' component={Dashboard}>
+          <Route path='albums' component={UserAlbumsFetch} />
+          <Route path='groups' component={UserGroupsFetch} />
         </Route>
       </Router>
     )

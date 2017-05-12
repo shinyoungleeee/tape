@@ -37,7 +37,7 @@ class AlbumsIndexContainer extends React.Component {
       )
     })
     return(
-      <div className="albums">
+      <div id="albums">
         <div className="row align-center">
           <h3>{this.props.user} Albums</h3>
         </div>

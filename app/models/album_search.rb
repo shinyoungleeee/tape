@@ -2,14 +2,25 @@ class AlbumSearch
   alias :read_attribute_for_serialization :send
 
   def self.album_search(search_text)
-    Album.where("name ILIKE ?", "%#{search_text}%") | Album.joins(:artists).where("artists.name ILIKE ?", "%#{search_text}%")
+    removed_punctuation = search_text.gsub(/\W/, ' ')
+    split_words = removed_punctuation.split(" ")
+    search_words = split_words.map{ |e| "%#{e}%" }
+
+    search_albums = Album.where("name ILIKE ?", search_words[0]) | Album.joins(:artists).where("artists.name ILIKE ?", search_words[0])
+    i = 1
+    while i < search_words.length do
+      next_search = Album.where("name ILIKE ?", search_words[i]) | Album.joins(:artists).where("artists.name ILIKE ?", search_words[i])
+      search_albums = (search_albums & next_search)
+      i += 1
+    end
+    search_albums
   end
 
   def self.stream_search(search_text)
     new_albums = []
     year_regex = /\b(19|20)\d{2}\b/
     RSpotify::Album.search(search_text).each do |spotify_album|
-      album = Album.new(name: spotify_album.name, image_url: spotify_album.images[1]["url"], year: spotify_album.release_date[year_regex].to_i, kind: spotify_album.album_type)
+      album = Album.new(name: spotify_album.name.titleize, image_url: spotify_album.images[1]["url"], year: spotify_album.release_date[year_regex].to_i, kind: spotify_album.album_type)
       album.album_urls = []
       album.album_urls << AlbumUrl.new(service: "Spotify", url: spotify_album.external_urls["spotify"])
       album.artists = []
@@ -34,7 +45,7 @@ class AlbumSearch
       itunes_uri_path = URI.parse(itunes_album["collectionViewUrl"]).path
       itunes_url = "https://itunes.apple.com" + itunes_uri_path + "?app=music"
       itunes_image_url = itunes_album["artworkUrl100"].gsub("100x100bb", "300x300bb")
-      itunes_name = itunes_album["collectionName"].sub /\ - (EP|Single)\z/, ''
+      itunes_name = (itunes_album["collectionName"].sub /\ - (EP|Single)\z/, "").titleize
       itunes_kind = "album"
       if itunes_album["collectionName"][/\ - (EP|Single)\z/]
         itunes_kind = "single"

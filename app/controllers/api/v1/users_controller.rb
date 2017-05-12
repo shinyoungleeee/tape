@@ -1,10 +1,12 @@
 class Api::V1::UsersController < ApiController
   protect_from_forgery unless: -> { request.format.json? }
 
-  def show
-    render json: {
-      current_user: current_user,
-      signed_in: user_signed_in?
-    }
+  def index
+    render json: current_user
+  end
+
+  def albums
+    user = User.find(params[:user_id])
+    render json: Album.liked_by(user)
   end
 end

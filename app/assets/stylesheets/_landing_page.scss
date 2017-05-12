@@ -4,6 +4,7 @@ h1 {
 
 .landing-page {
   background-color: #1B1B1B;
+  min-height: 200vh;
 }
 
 .landing-page-title {
@@ -34,7 +35,7 @@ h1 {
   img {
     padding: 3px;
     border: solid 1px #ECECEC;
-    height: 7.5vh;
+    max-height: 10vh;
     margin-left: 1rem;
     margin-right: 1rem;
   }
@@ -43,6 +44,7 @@ h1 {
 #landing-page-nav-links {
   a {
     padding-left: 0;
+    border-bottom: solid 1px transparent;
   }
 
   a:hover {

@@ -1,8 +1,5 @@
 .dashboard {
   margin-bottom: 5vh;
-}
-
-.dashboard-title {
   background-image: image-url("space.jpg");
   background-size: 100% auto;
   background-position: center right;
@@ -16,10 +13,11 @@
   }
 }
 
-.dashboard-title li {
+.dashboard li {
   a {
     padding-left: 0;
     margin-left: 1rem;
+    border-bottom: solid 1px transparent;
   }
 
   a:hover {
@@ -34,7 +32,7 @@
   img {
     padding: 3px;
     border: solid 1px #1B1B1B;
-    height: 7.5vh;
+    max-height: 10vh;
     margin-left: 1rem;
     margin-right: 1rem;
   }

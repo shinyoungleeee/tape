@@ -6,30 +6,21 @@ class AlbumsIndexContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      albums: []
     }
   }
 
-  componentDidMount() {
-    fetch('/api/v1/albums.json', { credentials: 'same-origin' })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ albums: body });
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
-  }
-
   render() {
-    let albums = this.state.albums.map(album => {
+    let albums = this.props.albums.map(album => {
+      let likeButton = "unliked"
+      let user_liked = album.album_likes.some(like => {
+        return like.is_current_user && like.like === "liked"
+      })
+      if (user_liked) {
+        likeButton = "liked"
+      }
+      let clickLikeHandler = () => {
+        this.props.like(album.id)
+      }
       return(
         <AlbumTile
           key={album.id}
@@ -40,13 +31,15 @@ class AlbumsIndexContainer extends React.Component {
           kind={album.kind}
           artists={album.artists}
           links={album.album_urls}
+          likeButton={likeButton}
+          clickLikeHandler={clickLikeHandler}
         />
       )
     })
     return(
       <div className="albums">
         <div className="row align-center">
-          <h3>My Albums</h3>
+          <h3>{this.props.user} Albums</h3>
         </div>
         <hr width="25%" /><br/>
         <div className="row small-up-2 medium-up-3 large-up-4">

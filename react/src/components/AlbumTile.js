@@ -11,7 +11,7 @@ class AlbumTile extends React.Component {
   render() {
     let links = this.props.links.map(link => {
       return(
-        <a href={link.url}><img className="album-url-logos" src={link.service + ".png"} alt={link.service + " Logo"} /></a>
+        <a href={link.url}><img className="album-url-logos" src={"/" + link.service + ".png"} alt={link.service + " Logo"} /></a>
       )
     })
 
@@ -30,6 +30,7 @@ class AlbumTile extends React.Component {
               <hr width="50%" />
               {artists}
             </div>
+            <img className={"like-button " + this.props.likeButton} src={"/" + this.props.likeButton + ".png"} alt={this.props.likeButton + " button"} onClick={this.props.clickLikeHandler} />
           </div>
         </div>
         <div className="text-center">

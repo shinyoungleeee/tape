@@ -3,7 +3,8 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
-import AlbumsIndexContainer from './containers/AlbumsIndexContainer';
+import AllAlbumsFetch from './containers/AllAlbumsFetch';
+import UserAlbumsFetch from './containers/UserAlbumsFetch';
 
 class Root extends React.Component {
   constructor(props){
@@ -17,7 +18,10 @@ class Root extends React.Component {
       <Router history={browserHistory}>
         <Route path='/' component={LandingPage} />
         <Route path='albums' name='albums' component={Dashboard}>
-          <IndexRoute component={AlbumsIndexContainer} />
+          <IndexRoute component={AllAlbumsFetch} />
+        </Route>
+        <Route path='users/:id/albums' name='user albums' component={Dashboard}>
+          <IndexRoute component={UserAlbumsFetch} />
         </Route>
       </Router>
     )

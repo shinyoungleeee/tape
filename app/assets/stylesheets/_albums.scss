@@ -46,10 +46,27 @@
 .like-button {
   height: 30px;
   padding: 5px;
-  border: solid 1px #ECECEC;
   border-radius: 25%;
+  box-shadow: 2px 4px #999;
+}
+
+.like-button:active {
+  box-shadow: 1px 2px scale-color(#999, $lightness: -50%);
+  transform: translate(1px, 2px);
 }
 
 .liked {
-  background: #ECECEC;
+  background: $primary-color;
+}
+
+.liked:hover, .liked:active {
+  background: scale-color($primary-color, $lightness: -15%);
+}
+
+.unliked {
+  background: $secondary-color;
+}
+
+.unliked:hover, .unliked:active {
+  background: scale-color($secondary-color, $lightness: -15%);
 }

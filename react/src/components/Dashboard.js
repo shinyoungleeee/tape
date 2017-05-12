@@ -74,8 +74,8 @@ class Dashboard extends React.Component {
         return(
           <ul className="menu">
             <li className="menu-text">{this.state.currentUser.handle}: </li>
-            <li><Link to={'/groups'}>My Groups</Link></li>
-            <li><Link to={`users/${this.state.currentUser.id}/albums`}>My Albums</Link></li>
+            <li><Link to={`/users/${this.state.currentUser.id}/groups`}>My Groups</Link></li>
+            <li><Link to={`/users/${this.state.currentUser.id}/albums`}>My Albums</Link></li>
             <li><Link to={'/artists'}>My Artists</Link></li>
           </ul>
         )

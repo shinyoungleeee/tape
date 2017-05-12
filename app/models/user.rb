@@ -18,4 +18,7 @@ class User < ApplicationRecord
   end
 
   has_many :album_likes
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  has_many :created_groups, foreign_key: "creator_id", class_name: "Group"
 end

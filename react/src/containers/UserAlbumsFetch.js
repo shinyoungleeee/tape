@@ -65,7 +65,7 @@ class UserAlbumsFetch extends React.Component {
     return(
       <AlbumsIndexContainer
         albums={this.state.albums}
-        user={user}
+        scope={user}
         like={this.like}
       />
     )

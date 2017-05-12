@@ -23,11 +23,13 @@ class GroupTile extends React.Component {
     }
     return(
       <div className="column column-block text-center">
-        <h3>{this.props.name}</h3>
-        <p><strong>Creator:</strong> {this.props.creator}</p>
-        <div className={"thumbnail group-image-container images-" + imageLimit}>
-          {images}
-        </div>
+        <Link to={`groups/${this.props.id}/albums`}>
+          <h3>{this.props.name}</h3>
+          <p><strong>Creator:</strong> {this.props.creator}</p>
+          <div className={"thumbnail group-image-container images-" + imageLimit}>
+            {images}
+          </div>
+        </Link>
       </div>
     )
   }

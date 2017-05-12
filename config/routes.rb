@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'albums', to: 'static_pages#index'
   get 'groups', to: 'static_pages#index'
+  get 'groups/:group_id/albums', to: 'static_pages#index'
   get 'users/:user_id/albums', to: 'static_pages#index'
   get 'users/:user_id/groups', to: 'static_pages#index'
 
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :groups do
         get '/join', to: 'groups#join'
+        get '/albums', to: 'groups#albums'
       end
       resources :albums do
         get '/like', to: 'albums#like'

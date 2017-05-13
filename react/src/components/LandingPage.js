@@ -114,7 +114,7 @@ class LandingPage extends React.Component {
       })
       .then(() => {
         $('html, body').animate({
-          scrollTop: $("#new-albums").offset().top
+          scrollTop: $("#new-albums-results").offset().top
         }, 1500);
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -324,7 +324,7 @@ class LandingPage extends React.Component {
             </div>
           </div>
         </div>
-        <div id="albums">
+        <div id="albums-results">
           <div className={albumShow}>
             <div className="row">
               <h1>Albums</h1>
@@ -338,7 +338,7 @@ class LandingPage extends React.Component {
             <hr/><br/>
           </div>
         </div>
-        <div id="new-albums">
+        <div id="new-albums-results">
           <div className={newAlbumShow}>
             <div className="row">
               <br/><br/>

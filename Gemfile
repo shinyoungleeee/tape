@@ -12,12 +12,12 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'itunes-search-api'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'pry-rails'
 
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers'
   gem 'valid_attribute'

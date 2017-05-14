@@ -2,12 +2,11 @@ h1 {
   color: #ECECEC;
 }
 
-.landing-page {
+#landing-page {
   background-color: #1B1B1B;
-  min-height: 200vh;
 }
 
-.landing-page-title {
+#landing-page-title {
   background-image: image-url("tape.jpg");
   background-position: center top;
   background-size: contain;
@@ -17,7 +16,7 @@ h1 {
   padding: 1px;
 }
 
-.landing-page-title h1 {
+#landing-page-title h1 {
   background-image: image-url("moon.jpeg");
   background-size: 110% auto;
   background-position: center;
@@ -65,9 +64,22 @@ h1 {
   }
 }
 
+#landing-page-search-results {
+  background-image: image-url("album-search.jpg");
+  background-size: auto 70vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 10vh;
+}
+
 .landing-page-search {
   filter: invert(100%);
   margin-top: 40vh;
+
+  input {
+    font-family: inherit;
+  }
 }
 
 .album-search {
@@ -77,10 +89,21 @@ h1 {
   div.column.column-block {
     white-space: normal;
     display:inline-block;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    margin-right: 5px;
   }
 
   img.thumbnail.album-art {
-    max-height: 300px;
+    max-height: 25vh;
     width: auto;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: .8em;
   }
 }

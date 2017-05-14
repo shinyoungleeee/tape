@@ -10,14 +10,14 @@ class LandingPage extends React.Component {
       currentUser: null,
       search: {},
       albums: [],
-      streamSearchShow: "invisible",
+      streamSearchShow: "hide",
       newAlbums: []
     }
 
     this.getUserData = this.getUserData.bind(this)
     this.search = this.search.bind(this)
     this.albumSearch = this.albumSearch.bind(this)
-    this.clickStreamSearch = this.clickStreamSearch.bind(this)
+    this.handleStreamSearch = this.handleStreamSearch.bind(this)
     this.streamSearch = this.streamSearch.bind(this)
     this.newAlbum = this.newAlbum.bind(this)
     this.like = this.like.bind(this)
@@ -43,9 +43,7 @@ class LandingPage extends React.Component {
 
   clickSearch(event) {
     event.preventDefault();
-    $('html, body').animate({
-      scrollTop: $("#search").offset().top
-    }, 1500);
+    $('html, body').animate({ scrollTop: $(document).height() }, 1000)
   }
 
   search(event) {
@@ -53,7 +51,7 @@ class LandingPage extends React.Component {
       this.setState({
         albums: [],
         newAlbums: [],
-        streamSearchShow: "invisible"
+        streamSearchShow: "hide"
       })
     } else {
       let search = { search_text: event.target.value }
@@ -88,7 +86,8 @@ class LandingPage extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  clickStreamSearch(event) {
+  handleStreamSearch(event) {
+    event.preventDefault();
     this.streamSearch({ search: this.state.search })
   }
 
@@ -111,11 +110,6 @@ class LandingPage extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ newAlbums: body });
-      })
-      .then(() => {
-        $('html, body').animate({
-          scrollTop: $("#new-albums").offset().top
-        }, 1500);
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -164,13 +158,19 @@ class LandingPage extends React.Component {
 
   componentDidMount() {
     this.getUserData();
-    $(function(){ $(document).foundation(); });
-    $(document).ready(function() {
-      $(window).keydown(function(event){
-        if(event.keyCode == 13) {
-          event.preventDefault();
-          return false;
-        }
+    let tStart = 0
+      , tEnd = 500
+      , cStart = [27, 27, 27]
+      , cEnd = [255, 255, 255]
+      , cDiff = [cEnd[0] - cStart[0], cEnd[1] - cStart[1], cEnd[2] - cStart[2]];
+    $(() => {
+      $(document).foundation();
+      $(document).scroll(function() {
+        let p = ($(this).scrollTop() - tStart) / (tEnd - tStart);
+        p = Math.min(1, Math.max(0, p));
+        let cBg = [Math.round(cStart[0] + cDiff[0] * p), Math.round(cStart[1] + cDiff[1] * p), Math.round(cStart[2] + cDiff[2] * p)];
+        $("#landing-page").css('background-color', 'rgb(' + cBg.join(',') +')');
+        $('#search').css({ 'marginTop' : `${200 * p}px` });
       });
     });
   }
@@ -248,7 +248,7 @@ class LandingPage extends React.Component {
         />
       )
     })
-    let albumShow = "invisible"
+    let albumShow = "hide"
     if (this.state.albums.length !== 0) {
       albumShow = ""
     }
@@ -279,14 +279,14 @@ class LandingPage extends React.Component {
         />
       )
     })
-    let newAlbumShow = "invisible"
+    let newAlbumShow = "hide"
     if (this.state.newAlbums.length !== 0) {
       newAlbumShow = ""
     }
 
     return(
-      <div className="landing-page">
-        <div className="landing-page-title">
+      <div id="landing-page">
+        <div id="landing-page-title">
           <div className="landing-page-nav flex-container align-justify">
             <div className="media-object">
               <div className="media-object-section">
@@ -308,51 +308,46 @@ class LandingPage extends React.Component {
             </div>
             {userDiv()}
           </div>
-          <div className="row landing-page-search" onClick={this.clickSearch}>
-            <form id="search">
+          <div className="row landing-page-search">
+            <form id="search" onSubmit={this.handleStreamSearch}>
               <div className="input-group">
                 <span className="input-group-label">Search for Albums:</span>
-                <input className="input-group-field" type="text" placeholder="Search by Album Title or Artist Name" onChange={this.search} />
+                <input className="input-group-field" type="text" placeholder="Search by Album Title or Artist Name" onChange={this.search} onClick={this.clickSearch} />
+                <div className={"input-group-button " + this.state.streamSearchShow}>
+                  <input type="submit" className="button" value="Search Streaming Services" />
+                </div>
               </div>
             </form>
           </div>
         </div>
-        <div className={this.state.streamSearchShow}>
-          <div className="row align-center">
-            <div className="small-3 columns button" onClick={this.clickStreamSearch}>
-              Search Streaming Services
-            </div>
-          </div>
-        </div>
-        <div id="albums">
-          <div className={albumShow}>
-            <div className="row">
-              <h1>Albums</h1>
-            </div>
-            <br/>
-            <div className="row large-up-4">
-              <div className="album-search">
-                {albumSearch}
+        <div id="landing-page-search-results">
+          <div id="albums-results">
+            <div className={albumShow}>
+              <div className="row">
+                <br/>
+              </div>
+              <div className="row">
+                <h3>Current Tapes:</h3>
+              </div>
+              <div className="row large-up-4">
+                <div className="album-search">
+                  {albumSearch}
+                </div>
               </div>
             </div>
-            <hr/><br/>
           </div>
-        </div>
-        <div id="new-albums">
-          <div className={newAlbumShow}>
-            <div className="row">
-              <br/><br/>
-            </div>
-            <div className="row">
-              <h1>New Albums</h1>
-            </div>
-            <br/>
-            <div className="row">
-              <div className="album-search">
-                {newAlbumSearch}
+          <div id="new-albums-results">
+            <div className={newAlbumShow}>
+              <div className="row">
+                <br/>
+                <h3>New Tapes:</h3>
+              </div>
+              <div className="row">
+                <div className="album-search">
+                  {newAlbumSearch}
+                </div>
               </div>
             </div>
-            <hr/><br/>
           </div>
         </div>
       </div>

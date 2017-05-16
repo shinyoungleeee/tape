@@ -6,11 +6,13 @@ class UserGroupsFetch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      groups: []
+      groups: [],
+      errors: []
     }
 
     this.getGroupData = this.getGroupData.bind(this)
     this.joinGroup = this.joinGroup.bind(this)
+    this.newGroup = this.newGroup.bind(this)
   }
 
   getGroupData() {
@@ -50,6 +52,37 @@ class UserGroupsFetch extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  newGroup(event) {
+    event.preventDefault();
+    let newGroupPayload = {
+      name: event.target.name.value,
+      description: event.target.description.value
+    }
+    fetch(`/api/v1/groups.json`, {
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ group: newGroupPayload })
+    })
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ errors: body });
+      })
+      .then(() => {
+        this.getGroupData()
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   componentDidMount() {
     this.getGroupData()
   }
@@ -67,6 +100,8 @@ class UserGroupsFetch extends React.Component {
         groups={this.state.groups}
         user={userHandle}
         joinGroup={this.joinGroup}
+        newGroup={this.newGroup}
+        errors={this.state.errors}
       />
     )
   }

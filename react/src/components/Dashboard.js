@@ -50,9 +50,8 @@ class Dashboard extends React.Component {
       return(
         <ul className="menu invisible">
           <li className="menu-text">: </li>
-          <li><Link to={'/groups'}>My Groups</Link></li>
+          <li><Link to={`/groups`}>My Groups</Link></li>
           <li><Link to={`/albums`}>My Albums</Link></li>
-          <li><Link to={'/artists'}>My Artists</Link></li>
         </ul>
       )
     }
@@ -76,7 +75,6 @@ class Dashboard extends React.Component {
             <li className="menu-text">{this.state.currentUser.handle}: </li>
             <li><Link to={`/users/${this.state.currentUser.id}/groups`}>My Groups</Link></li>
             <li><Link to={`/users/${this.state.currentUser.id}/albums`}>My Albums</Link></li>
-            <li><Link to={'/artists'}>My Artists</Link></li>
           </ul>
         )
       }
@@ -96,7 +94,6 @@ class Dashboard extends React.Component {
               <li><Link to={'/'}>Search</Link></li>
               <li><Link to={'/groups'}>Groups</Link></li>
               <li><Link to={'/albums'}>Albums</Link></li>
-              <li><Link to={'/artists'}>Artists</Link></li>
             </ul>
             {userLinks()}
           </div>

@@ -12,6 +12,6 @@ class Api::V1::UsersController < ApiController
 
   def groups
     user = User.find(params[:user_id])
-    render json: Group.joins(:users).where(id: user.id).uniq
+    render json: Group.joins(:users).where(users: { id: user.id }).distinct
   end
 end

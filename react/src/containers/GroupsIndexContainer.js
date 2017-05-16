@@ -55,10 +55,10 @@ class GroupsIndexContainer extends React.Component {
         <div className="row align-center">
           <h3>{this.props.user} Groups</h3>
         </div>
-        <hr width="25%" /><br/>
         <div className="row align-center">
           <h5><a data-open="create-group">Create a new group</a></h5>
         </div>
+        <hr width="25%" /><br/>
         <div className="reveal" id="create-group" data-reveal>
           <form onSubmit={this.props.newGroup}>
             <h3>New Group</h3>

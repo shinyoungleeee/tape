@@ -18,6 +18,11 @@ class User < ApplicationRecord
     end
   end
 
+  validates :name, presence: true
+  validates :handle, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
+
   has_many :album_likes
   has_many :user_groups
   has_many :groups, through: :user_groups

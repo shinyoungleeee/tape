@@ -247,8 +247,8 @@ class LandingPage extends React.Component {
           artists={album.artists}
           links={album.album_urls}
           likeButton={likeButton}
-          likeCount={album.like_count}
           clickLikeHandler={clickLikeHandler}
+          likeCount={album.like_count}
         />
       )
     })

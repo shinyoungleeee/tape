@@ -36,7 +36,7 @@ class Api::V1::GroupsController < ApiController
 
   def albums
     this_group = Group.find(params[:group_id])
-    render json: this_group.albums
+    render json: this_group.albums.sort_by(&:like_count).reverse
   end
 
   private

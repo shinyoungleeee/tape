@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApiController
 
   def albums
     user = User.find(params[:user_id])
-    render json: Album.liked_by(user)
+    render json: Album.liked_by(user).sort_by(&:like_count).reverse
   end
 
   def groups

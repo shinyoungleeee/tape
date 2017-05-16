@@ -33,6 +33,7 @@ class AlbumTile extends React.Component {
               </div>
             </div>
             <img className={"like-button " + this.props.likeButton} src={"/" + this.props.likeButton + ".png"} alt={this.props.likeButton + " button"} onClick={this.props.clickLikeHandler} />
+            <span>{this.props.likeCount}</span>
           </div>
         </div>
         <div className="text-center">

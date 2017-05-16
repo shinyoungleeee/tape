@@ -2,7 +2,7 @@ class Api::V1::AlbumsController < ApiController
   protect_from_forgery unless: -> { request.format.json? }
 
   def index
-    render json: Album.all
+    render json: Album.all.sort_by(&:like_count).reverse
   end
 
   def create

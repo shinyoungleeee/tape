@@ -63,6 +63,7 @@ class LandingPage extends React.Component {
       let search = { search_text: event.target.value }
       this.setState({
         search: search,
+        newAlbums: [],
         streamSearchShow: ""
       })
       this.albumSearch({ search: search })

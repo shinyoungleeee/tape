@@ -25,7 +25,7 @@ class AlbumSearch
       album.album_urls << AlbumUrl.new(service: "Spotify", url: spotify_album.external_urls["spotify"])
       album.artists = []
       spotify_album.artists.each do |s_artist|
-        album.artists << Artist.new(name: s_artist.name)
+        album.artists << Artist.new(name: s_artist.name.titleize)
       end
 
       already_exists = Album.all.any? do |existing_album|
@@ -57,7 +57,7 @@ class AlbumSearch
       album.artists = []
       artists = itunes_album["artistName"].gsub(" & ", ", ").split(", ")
       artists.each do |i_artist|
-        album.artists << Artist.new(name: i_artist)
+        album.artists << Artist.new(name: i_artist.titleize)
       end
 
       already_exists = Album.all.any? do |existing_album|

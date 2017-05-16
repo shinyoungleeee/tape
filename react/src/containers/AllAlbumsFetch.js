@@ -32,9 +32,7 @@ class AllAlbumsFetch extends React.Component {
   }
 
   like(albumId) {
-    fetch(`/api/v1/albums/${albumId}/like.json`, {
-      credentials: 'same-origin'
-    })
+    fetch(`/api/v1/albums/${albumId}/like.json`, {credentials: 'same-origin'})
       .then(response => {
         if (response.ok) {
           return response;

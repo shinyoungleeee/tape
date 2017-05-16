@@ -12,6 +12,12 @@ class Group < ApplicationRecord
   belongs_to :creator, class_name: "User"
 
   def albums
-    Album.joins(:album_likes).where(album_likes: { user: self.users, like: "liked" }).uniq
+    Album.joins(:album_likes).where(album_likes: { user: self.users, like: "liked" }).distinct
+  end
+
+  def did_user_join(this_user)
+    users.any? do |user|
+      user == this_user
+    end
   end
 end

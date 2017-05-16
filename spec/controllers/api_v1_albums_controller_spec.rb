@@ -13,7 +13,7 @@ RSpec.describe Api::V1::AlbumsController, type: :controller do
       get :index
 
       expect(response.status).to eq 200
-      expect(json_parsed_response.first.keys).to eq ["id", "name", "image_url", "year", "kind", "artists", "album_urls", "album_likes"]
+      expect(json_parsed_response.first.keys).to eq ["id", "name", "image_url", "year", "kind", "like_count", "artists", "album_urls", "album_likes"]
       expect(json_parsed_response.first["id"]).to eq album.id
       expect(json_parsed_response.first["album_urls"].first.keys).to eq ["id", "service", "url"]
       expect(json_parsed_response.first["album_urls"].first["id"]).to eq album_url.id

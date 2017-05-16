@@ -144,9 +144,7 @@ class LandingPage extends React.Component {
   }
 
   like(albumId) {
-    fetch(`/api/v1/albums/${albumId}/like.json`, {
-      credentials: 'same-origin'
-    })
+    fetch(`/api/v1/albums/${albumId}/like.json`, { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
           return response;
@@ -169,16 +167,14 @@ class LandingPage extends React.Component {
       , cStart = [27, 27, 27]
       , cEnd = [255, 255, 255]
       , cDiff = [cEnd[0] - cStart[0], cEnd[1] - cStart[1], cEnd[2] - cStart[2]];
-    $(() => {
-      $(document).foundation();
-      $(document).scroll(function() {
-        let p = ($(this).scrollTop() - tStart) / (tEnd - tStart);
-        p = Math.min(1, Math.max(0, p));
-        let cBg = [Math.round(cStart[0] + cDiff[0] * p), Math.round(cStart[1] + cDiff[1] * p), Math.round(cStart[2] + cDiff[2] * p)];
-        $("#landing-page").css('background-color', 'rgb(' + cBg.join(',') +')');
-        $('#search').css({ 'marginTop' : `${380 * p}px` });
-        $('#fade').css({ 'opacity' : p });
-      });
+    $(document).foundation();
+    $(document).scroll(function() {
+      let p = ($(this).scrollTop() - tStart) / (tEnd - tStart);
+      p = Math.min(1, Math.max(0, p));
+      let cBg = [Math.round(cStart[0] + cDiff[0] * p), Math.round(cStart[1] + cDiff[1] * p), Math.round(cStart[2] + cDiff[2] * p)];
+      $("#landing-page").css('background-color', 'rgb(' + cBg.join(',') +')');
+      $('#search').css({ 'marginTop' : `${380 * p}px` });
+      $('#fade').css({ 'opacity' : p });
     });
   }
 

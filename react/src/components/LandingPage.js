@@ -118,6 +118,9 @@ class LandingPage extends React.Component {
       .then(body => {
         this.setState({ newAlbums: body });
       })
+      .then(() => {
+        this.albumSearch(this.state.search)
+      })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 

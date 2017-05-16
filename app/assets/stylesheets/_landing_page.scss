@@ -55,7 +55,14 @@ h1 {
   visibility: hidden;
 }
 
+#fade {
+  opacity: 0;
+  z-index: 1;
+  position: relative;
+}
+
 #search {
+  position: relative;
   padding-top: 5vh;
 
   .input-group-field {
@@ -70,16 +77,11 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
-  padding-top: 10vh;
 }
 
 .landing-page-search {
   filter: invert(100%);
   margin-top: 40vh;
-
-  input {
-    font-family: inherit;
-  }
 }
 
 .album-search {
@@ -89,21 +91,31 @@ h1 {
   div.column.column-block {
     white-space: normal;
     display:inline-block;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     padding: 5px;
     margin-right: 5px;
   }
 
   img.thumbnail.album-art {
-    max-height: 25vh;
+    max-height: 20vh;
     width: auto;
   }
 
+  .like-button {
+    height: 23px;
+    padding: 4px;
+    margin: 5px;
+  }
+
   h5 {
-    font-size: 1em;
+    font-size: .9em;
   }
 
   h6 {
-    font-size: .8em;
+    font-size: .7em;
   }
+}
+
+.button {
+  font-family: inherit;
 }

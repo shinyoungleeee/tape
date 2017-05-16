@@ -25,10 +25,12 @@ class AlbumTile extends React.Component {
         <div className="album-container">
           <img src={this.props.art} className="thumbnail album-art" alt={this.props.name + " Album Art"} />
           <div className="album-overlay">
-            <div className="album-text">
-              <h5>{this.props.name}</h5>
-              <hr width="50%" />
-              {artists}
+            <div className="album-text flex-container align-center align-middle">
+              <div>
+                <h5>{this.props.name}</h5>
+                <hr width="50%" />
+                {artists}
+              </div>
             </div>
             <img className={"like-button " + this.props.likeButton} src={"/" + this.props.likeButton + ".png"} alt={this.props.likeButton + " button"} onClick={this.props.clickLikeHandler} />
           </div>

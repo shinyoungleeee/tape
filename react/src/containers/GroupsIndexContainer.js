@@ -11,6 +11,9 @@ class GroupsIndexContainer extends React.Component {
 
   render() {
     let groups = this.props.groups.map(group => {
+      let clickJoinHandler = () => {
+        this.props.joinGroup(group.id)
+      }
       return(
         <GroupTile
           key={group.id}
@@ -21,6 +24,8 @@ class GroupsIndexContainer extends React.Component {
           creator={group.creator.handle}
           users={group.users}
           albums={group.albums}
+          userJoined={group.user_joined}
+          clickJoinHandler={clickJoinHandler}
         />
       )
     })

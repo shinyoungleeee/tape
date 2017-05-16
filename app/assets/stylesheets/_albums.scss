@@ -44,8 +44,6 @@
   opacity: 0;
   transition: .5s ease;
   background-color: #1B1B1B;
-  padding: 10px;
-  overflow-x: scroll;
 }
 
 .album-container:hover .album-overlay {
@@ -56,36 +54,8 @@
   color: #ECECEC;
   text-align: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-}
-
-.like-button {
-  height: 30px;
-  padding: 5px;
-  border-radius: 25%;
-  box-shadow: 2px 4px #999;
-}
-
-.like-button:active {
-  box-shadow: 1px 2px scale-color(#999, $lightness: -50%);
-  transform: translate(1px, 2px);
-}
-
-.liked {
-  background: $primary-color;
-}
-
-.liked:hover, .liked:active {
-  background: scale-color($primary-color, $lightness: -15%);
-}
-
-.unliked {
-  background: $secondary-color;
-}
-
-.unliked:hover, .unliked:active {
-  background: scale-color($secondary-color, $lightness: -15%);
+  height: 100%;
+  width: 100%;
+  padding: 18%;
+  overflow-y: scroll;
 }

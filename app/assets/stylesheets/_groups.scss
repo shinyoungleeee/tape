@@ -18,7 +18,7 @@
   position: absolute;
 }
 
-.group-image-container img  {
+.group-image-container img {
   display: block;
   float: left;
 }
@@ -29,4 +29,22 @@
 
 .images-9 img {
   width: 33.3%;
+}
+
+.group-show-details {
+  background: image-url("ep_naturalblack.png");
+  color: $white;
+}
+
+.group-show-description {
+  overflow-x: scroll;
+}
+
+.group-show-users {
+  max-height: 15vh;
+  overflow-y: scroll;
+}
+
+.user-tile-avatar {
+  max-height: 5vh;
 }

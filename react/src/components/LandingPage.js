@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import Dashboard from './Dashboard';
 import AlbumTile from './AlbumTile';
 
 class LandingPage extends React.Component {
@@ -43,7 +44,12 @@ class LandingPage extends React.Component {
 
   clickSearch(event) {
     event.preventDefault();
-    $('html, body').animate({ scrollTop: $(document).height() }, 1000)
+    $('html, body').animate({ scrollTop: $(document).height() }, 2000)
+    $('html, body').bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e) {
+      if (e.which > 0 || e.type === "mousedown" || e.type === "mousewheel") {
+        $('html, body').stop().unbind('scroll mousedown DOMMouseScroll mousewheel keyup');
+      }
+    });
   }
 
   search(event) {
@@ -170,7 +176,8 @@ class LandingPage extends React.Component {
         p = Math.min(1, Math.max(0, p));
         let cBg = [Math.round(cStart[0] + cDiff[0] * p), Math.round(cStart[1] + cDiff[1] * p), Math.round(cStart[2] + cDiff[2] * p)];
         $("#landing-page").css('background-color', 'rgb(' + cBg.join(',') +')');
-        $('#search').css({ 'marginTop' : `${200 * p}px` });
+        $('#search').css({ 'marginTop' : `${380 * p}px` });
+        $('#fade').css({ 'opacity' : p });
       });
     });
   }
@@ -321,17 +328,22 @@ class LandingPage extends React.Component {
           </div>
         </div>
         <div id="landing-page-search-results">
+          <div id="fade">
+            <Dashboard />
+          </div>
+          <div className="row">
+            <br/><br/>
+          </div>
           <div id="albums-results">
             <div className={albumShow}>
               <div className="row">
-                <br/>
-              </div>
-              <div className="row">
-                <h3>Current Tapes:</h3>
-              </div>
-              <div className="row large-up-4">
-                <div className="album-search">
-                  {albumSearch}
+                <div className="small-2 columns">
+                  <h3>Current Tapes:</h3>
+                </div>
+                <div className="small-10 columns">
+                  <div className="album-search">
+                    {albumSearch}
+                  </div>
                 </div>
               </div>
             </div>
@@ -339,12 +351,13 @@ class LandingPage extends React.Component {
           <div id="new-albums-results">
             <div className={newAlbumShow}>
               <div className="row">
-                <br/>
-                <h3>New Tapes:</h3>
-              </div>
-              <div className="row">
-                <div className="album-search">
-                  {newAlbumSearch}
+                <div className="small-2 columns">
+                  <h3>New Tapes:</h3>
+                </div>
+                <div className="small-10 columns">
+                  <div className="album-search">
+                    {newAlbumSearch}
+                  </div>
                 </div>
               </div>
             </div>

@@ -9,18 +9,22 @@ class GroupTile extends React.Component {
   }
 
   render() {
-    let imageLimit = 1;
+    let images = []
+    let imageLimit = 0;
     if (this.props.albums.length >= 9) {
       imageLimit = 9
     } else if (this.props.albums.length >= 4) {
       imageLimit = 4
-    } else {
+    } else if (this.props.albums.length >= 1) {
       imageLimit = 1
     }
-    let images = []
     for (let i = 0; i < imageLimit; i++) {
       images.push(<img src={this.props.albums[i].image_url} />)
     }
+    if (imageLimit === 0) {
+      images.push(<img src="/tape-icon-black.png" />)
+    }
+
     return(
       <div className="column column-block text-center">
         <Link to={`groups/${this.props.id}/albums`}>

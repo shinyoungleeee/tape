@@ -27,7 +27,7 @@ class Api::V1::GroupsController < ApiController
   def join
     this_group = Group.find(params[:group_id])
     if this_group.did_user_join(current_user)
-      UserGroup.where(user: current_user, group: this_group).destroy
+      UserGroup.delete(UserGroup.where(user: current_user, group: this_group))
     else
       UserGroup.create(user: current_user, group: this_group)
     end

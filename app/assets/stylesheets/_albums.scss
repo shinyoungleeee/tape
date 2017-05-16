@@ -7,8 +7,7 @@
 #albums::after {
   content: "";
   background: image-url("albums.jpeg");
-  background-size: cover;
-  background-position: center;
+  background-size: 100vw auto;
   opacity: 0.5;
   top: 0;
   left: 0;

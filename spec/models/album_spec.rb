@@ -23,20 +23,4 @@ RSpec.describe Album, type: :model do
       expect(Album.liked_by(like.user)).to eq([])
     end
   end
-
-  describe "#like_count" do
-    it "should return the number of users that liked the album" do
-      like = create(:album_like)
-      expect(like.album.like_count).to eq 1
-
-      create(:album_like, album: like.album)
-      expect(like.album.like_count).to eq 2
-
-      create(:album_like)
-      expect(like.album.like_count).to eq 2
-
-      like.unliked!
-      expect(like.album.like_count).to eq 1
-    end
-  end
 end

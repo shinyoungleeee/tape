@@ -10,6 +10,7 @@ class UserAlbumsFetch extends React.Component {
     }
 
     this.getAlbumData = this.getAlbumData.bind(this)
+    this.sortByLikeCount = this.sortByLikeCount.bind(this)
     this.like = this.like.bind(this)
   }
 
@@ -27,8 +28,16 @@ class UserAlbumsFetch extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ albums: body });
+        this.sortByLikeCount();
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  sortByLikeCount() {
+    let sorted = this.state.albums.sort((a, b) => {
+      return b.like_count - a.like_count;
+    })
+    this.setState({ albums: sorted })
   }
 
   like(albumId) {

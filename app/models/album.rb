@@ -14,8 +14,4 @@ class Album < ApplicationRecord
   def self.liked_by(user)
     joins(:album_likes).where(album_likes: { user: user, like: "liked" })
   end
-
-  def like_count
-    album_likes.where(like: "liked").length
-  end
 end

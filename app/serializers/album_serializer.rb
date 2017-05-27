@@ -3,4 +3,8 @@ class AlbumSerializer < ActiveModel::Serializer
   has_many :artists
   has_many :album_urls
   has_many :album_likes
+
+  def like_count
+    object.album_likes.length
+  end
 end

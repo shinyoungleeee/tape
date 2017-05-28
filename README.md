@@ -3,7 +3,7 @@
 http://tapeshare.herokuapp.com
 (Currently designed for Google Chrome only)
 
-When the next Taylor Swift record comes out, I *need* my friends to know that I’m listening to it. But my girl T-Swift is not on Spotify! What can I do? With tape, users can share their favorite records with friends across different music streaming services.
+Users can share their favorite records with friends across different music streaming services.
 
 ## Three main features:
 
